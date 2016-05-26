@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+ <!-- <script src="ng-chevron-min.js"></script>  -->
+ <link href="hover-min.css" rel="stylesheet" />
+ <script src="ng-chevron.js"></script> 
+
+
+
+
+<script>
+	
+	(function(angular) {
+  		'use strict';
+		angular.module('heroApp',['ngChevron']).controller('mainCtrl', function($scope) {
+       $scope.itemValue = 'In Request';
+       $scope.KeyValues =  ['In Request','In Authoring','In Signature','In Approval'];
+       $scope.colorMap = [{stageName : 'In Authoring', color : '#d50000'}];
+  	
+
+        $scope.changeValue = function(selectedValue){
+          console.log(selectedValue);
+          $scope.itemValue = selectedValue;
+        }
+
+
+      
+		});
+	})(window.angular);
+
+</script>
+
+  
+
+  
+</head>
+<body ng-app="heroApp">
+<h3>ng-Chevron</h3>
+<div ng-controller="mainCtrl as ctrlNew">
+
+<table>
+	<tr>
+    <td  ng-repeat="item in KeyValues">
+         <input type="radio" name="gender" ng-value="item" ng-model="itemValue" ng-click="changeValue(itemValue)"> {{item}}
+    </td> 
+  </tr>
+</table>
+
+ <br/>
+ <ng-chevron stage-list="KeyValues" current-stage="itemValue" color-map="colorMap" active-color="lightblue " inactive-color="#37474F"  font-size="15">
+</ng-chevron> 
+
+<br/>
+
+ <!-- <ng-chevron active-color="green" inactive-color="black" 
+              stage-list="KeyValues" current-stage="itemValue" 
+              font-size="20" font-color="orange" 
+              stage-height="90" stage-width="200">
+</ng-chevron> --> 
+ 
+</div>
+</body>
+</html>
